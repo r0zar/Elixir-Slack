@@ -12,8 +12,7 @@ defmodule Slack.Rtm do
   @moduledoc false
 
   def start(token) do
-    slack_url(token)
-    |> HTTPoison.get()
+    HTTPoison.get(slack_url(token), [], hackney: [:insecure])
     |> handle_response()
   end
 
